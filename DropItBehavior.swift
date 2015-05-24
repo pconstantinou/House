@@ -12,10 +12,11 @@ class DropItBehavior: UIDynamicBehavior {
     
     let gravity = UIGravityBehavior()
     
+    
     lazy var dropBehavior: UIDynamicItemBehavior = {
        let lazilyCreatedDropBehavior = UIDynamicItemBehavior()
         lazilyCreatedDropBehavior.allowsRotation = true
-        lazilyCreatedDropBehavior.elasticity = 0.75
+        lazilyCreatedDropBehavior.elasticity = 1
         return lazilyCreatedDropBehavior
     }()
     

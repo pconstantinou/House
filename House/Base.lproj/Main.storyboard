@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vMm-72-HNb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MIW-5i-QNa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
@@ -51,6 +51,54 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="245" y="504"/>
+        </scene>
+        <!--Pong View Controller-->
+        <scene sceneID="opN-6F-msR">
+            <objects>
+                <viewController id="MIW-5i-QNa" customClass="PongViewController" customModule="House" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pkT-S9-4w4"/>
+                        <viewControllerLayoutGuide type="bottom" id="zmY-a3-ta8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bSE-L3-mnZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7l-nb-gGx" customClass="PongUIView" customModule="House" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VHp-Bz-Jdi" appends="YES" id="TOk-UN-SNa"/>
+                                    <outletCollection property="gestureRecognizers" destination="77s-NU-djU" appends="YES" id="4IK-6o-gAt"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r7l-nb-gGx" firstAttribute="top" secondItem="bSE-L3-mnZ" secondAttribute="top" id="0B6-Ne-Xud"/>
+                            <constraint firstAttribute="trailing" secondItem="r7l-nb-gGx" secondAttribute="trailing" id="Gh8-b8-NLe"/>
+                            <constraint firstItem="r7l-nb-gGx" firstAttribute="leading" secondItem="bSE-L3-mnZ" secondAttribute="leading" id="MOp-dS-jKr"/>
+                            <constraint firstItem="r7l-nb-gGx" firstAttribute="bottom" secondItem="zmY-a3-ta8" secondAttribute="top" id="gdu-Ec-G2X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pongView" destination="r7l-nb-gGx" id="2Mc-2h-MwQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tVA-3B-VZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="VHp-Bz-Jdi">
+                    <connections>
+                        <action selector="movePaddle:" destination="MIW-5i-QNa" id="bET-MI-dN2"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="77s-NU-djU">
+                    <connections>
+                        <action selector="restart:" destination="MIW-5i-QNa" id="yuH-0z-p9d"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="245" y="1181"/>
         </scene>
     </scenes>
 </document>
