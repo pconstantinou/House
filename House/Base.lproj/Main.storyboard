@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MIW-5i-QNa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k6J-pk-ERb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Drop It!-->
         <scene sceneID="GDt-mg-Qb3">
             <objects>
-                <viewController title="Drop It!" id="vMm-72-HNb" customClass="DropItViewController" customModule="House" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DropItViewController" title="Drop It!" id="vMm-72-HNb" customClass="DropItViewController" customModule="House" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e4L-Ca-AmG"/>
                         <viewControllerLayoutGuide type="bottom" id="Tm5-DK-bOj"/>
@@ -52,53 +52,94 @@
             </objects>
             <point key="canvasLocation" x="245" y="504"/>
         </scene>
-        <!--Pong View Controller-->
-        <scene sceneID="opN-6F-msR">
+        <!--Settings-->
+        <scene sceneID="FIr-Hy-LVw">
             <objects>
-                <viewController id="MIW-5i-QNa" customClass="PongViewController" customModule="House" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Oqa-a2-1eq" userLabel="Settings" customClass="UITableViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pkT-S9-4w4"/>
-                        <viewControllerLayoutGuide type="bottom" id="zmY-a3-ta8"/>
+                        <viewControllerLayoutGuide type="top" id="Nrf-2S-yRl"/>
+                        <viewControllerLayoutGuide type="bottom" id="OBA-7C-V4N"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bSE-L3-mnZ">
+                    <view key="view" contentMode="scaleToFill" id="S2N-Cy-HUn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" label="Settings"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="sO6-Ff-Zfc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YvI-ba-CoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="2118"/>
+        </scene>
+        <!--Pong-->
+        <scene sceneID="97I-lr-VfD">
+            <objects>
+                <viewController title="Pong" id="8JL-KJ-m11" customClass="PongViewController" customModule="House" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4aw-uv-a2g"/>
+                        <viewControllerLayoutGuide type="bottom" id="KRZ-Hd-xuM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xAB-TJ-Sid">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7l-nb-gGx" customClass="PongUIView" customModule="House" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPz-yb-Tax" customClass="PongUIView" customModule="House" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="VHp-Bz-Jdi" appends="YES" id="TOk-UN-SNa"/>
-                                    <outletCollection property="gestureRecognizers" destination="77s-NU-djU" appends="YES" id="4IK-6o-gAt"/>
+                                    <outletCollection property="gestureRecognizers" destination="8eG-4h-BfA" appends="YES" id="Zm4-xx-pFS"/>
+                                    <outletCollection property="gestureRecognizers" destination="dL4-u3-GNW" appends="YES" id="rj7-GD-LJu"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" label="Break out"/>
                         <constraints>
-                            <constraint firstItem="r7l-nb-gGx" firstAttribute="top" secondItem="bSE-L3-mnZ" secondAttribute="top" id="0B6-Ne-Xud"/>
-                            <constraint firstAttribute="trailing" secondItem="r7l-nb-gGx" secondAttribute="trailing" id="Gh8-b8-NLe"/>
-                            <constraint firstItem="r7l-nb-gGx" firstAttribute="leading" secondItem="bSE-L3-mnZ" secondAttribute="leading" id="MOp-dS-jKr"/>
-                            <constraint firstItem="r7l-nb-gGx" firstAttribute="bottom" secondItem="zmY-a3-ta8" secondAttribute="top" id="gdu-Ec-G2X"/>
+                            <constraint firstItem="hPz-yb-Tax" firstAttribute="top" secondItem="xAB-TJ-Sid" secondAttribute="top" id="G8U-in-Zij"/>
+                            <constraint firstAttribute="trailing" secondItem="hPz-yb-Tax" secondAttribute="trailing" id="Peu-9W-Qmd"/>
+                            <constraint firstItem="hPz-yb-Tax" firstAttribute="leading" secondItem="xAB-TJ-Sid" secondAttribute="leading" id="WZU-c7-J1v"/>
+                            <constraint firstItem="hPz-yb-Tax" firstAttribute="bottom" secondItem="KRZ-Hd-xuM" secondAttribute="top" id="ykR-Wp-fG0"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="t5V-2w-JSE"/>
                     <connections>
-                        <outlet property="pongView" destination="r7l-nb-gGx" id="2Mc-2h-MwQ"/>
+                        <outlet property="pongView" destination="hPz-yb-Tax" id="wTF-az-JQd"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tVA-3B-VZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="VHp-Bz-Jdi">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sov-cC-Ldo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8eG-4h-BfA">
                     <connections>
-                        <action selector="movePaddle:" destination="MIW-5i-QNa" id="bET-MI-dN2"/>
-                    </connections>
-                </panGestureRecognizer>
-                <tapGestureRecognizer id="77s-NU-djU">
-                    <connections>
-                        <action selector="restart:" destination="MIW-5i-QNa" id="yuH-0z-p9d"/>
+                        <action selector="restart:" destination="8JL-KJ-m11" id="heF-jq-aOQ"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="dL4-u3-GNW">
+                    <connections>
+                        <action selector="movePaddle:" destination="8JL-KJ-m11" id="aQX-PY-pMI"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="245" y="1181"/>
+            <point key="canvasLocation" x="956" y="1439"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kZN-7E-8H2">
+            <objects>
+                <tabBarController id="k6J-pk-ERb" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="n9R-Rn-Xch">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8JL-KJ-m11" kind="relationship" relationship="viewControllers" id="3CZ-bm-lYP"/>
+                        <segue destination="Oqa-a2-1eq" kind="relationship" relationship="viewControllers" id="eyJ-CY-5Tb"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ip-UN-fHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="83" y="1915"/>
         </scene>
     </scenes>
 </document>

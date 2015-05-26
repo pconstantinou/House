@@ -12,9 +12,11 @@ public class PongUIView: UIView, UICollisionBehaviorDelegate {
 
     let ball = BezierPathsView()
     
-    let paddle = UIView()
+    let paddle = BezierPathsView()
     
     let pongBehavior = PongBehavior()
+    
+    var gameWatcherDelegate: GameWatcherDelegate?
     
     var path: UIBezierPath!
     
@@ -61,7 +63,12 @@ public class PongUIView: UIView, UICollisionBehaviorDelegate {
             size: brickSize)
         resetBall()
         resetPaddle()
-        ball.setPath(UIBezierPath(ovalInRect: ball.bounds), named: "Ball")
+        let path = UIBezierPath(ovalInRect: ball.bounds)
+        ball.setPath(path, named: "Ball")
+        
+        paddle.setPath(UIBezierPath(ovalInRect: paddle.bounds), named: "Paddle")
+        paddle.backgroundColor = UIColor.whiteColor()
+        
         initPongBoundaries()
         animator.addBehavior(pongBehavior)
     }
@@ -127,16 +134,6 @@ public class PongUIView: UIView, UICollisionBehaviorDelegate {
     }
     
 
-    public func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem,
-                                  withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint) {
-        if let brickId = identifier as? String {
-            pongBehavior.removeBrick(brickId)
-            if brickId == PongBehavior.PathNames.Baseline {
-                clearBricks()
-                initGame()
-            }
-        }
-    }
     
     func initGame() {
         let origin = CGPoint(x: brickSize.width / 2.0, y: brickSize.height / 2.0)
@@ -152,4 +149,30 @@ public class PongUIView: UIView, UICollisionBehaviorDelegate {
             }
         }
     }
+    
+    public func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem,
+        withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint) {
+            if let brickId = identifier as? String {
+
+                if (pongBehavior.removeBrick(brickId)) {
+                    gameWatcherDelegate?.blockDidGetHit()
+                    if pongBehavior.bricks.count == 0 {
+                        gameWatcherDelegate?.gameDidWin()
+                    }
+                }
+                if brickId == PongBehavior.PathNames.Baseline {
+                    gameWatcherDelegate?.gameDidFinish()
+                    clearBricks()
+                    initGame()
+                }
+            }
+    }
+
+    
+}
+
+public protocol GameWatcherDelegate {
+    func gameDidFinish()
+    func gameDidWin()
+    func blockDidGetHit()
 }

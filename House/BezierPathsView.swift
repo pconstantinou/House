@@ -20,6 +20,7 @@ class BezierPathsView: UIView {
     override func drawRect(rect: CGRect) {
         for(_, path) in bezierPaths {
             path.stroke()
+            path.fill()
         }
     }
 }

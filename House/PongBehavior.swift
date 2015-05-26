@@ -16,6 +16,8 @@ class PongBehavior: UIDynamicBehavior {
     let collision = UICollisionBehavior();
     
     let partBehavior =  UIDynamicItemBehavior()
+    
+    let gravity = UIGravityBehavior()
 
     
     struct PathNames {
@@ -29,28 +31,34 @@ class PongBehavior: UIDynamicBehavior {
         super.init()
         collision.translatesReferenceBoundsIntoBoundary = false
         
-        partBehavior.allowsRotation = true
-        partBehavior.elasticity = 1.1
+        partBehavior.allowsRotation = false
+        partBehavior.elasticity = 1.0
+        
+        gravity.gravityDirection = CGVector(dx: 0.0, dy: 1.0)
 
         addChildBehavior(collision)
         addChildBehavior(partBehavior)
+        addChildBehavior(gravity)
     }
     
     
     func addBall(ball:UIView) {
         collision.addItem(ball)
         partBehavior.addItem(ball)
+        gravity.addItem(ball)
         setBallVelocity(ball)
     }
     
     
-    func removeBrick(brickIdentifier:String) {
+    func removeBrick(brickIdentifier:String) -> Bool {
         print("Attempt to remove brick \(brickIdentifier)\n")
         if let brick = bricks[brickIdentifier] {
             brick.removeFromSuperview()
             collision.removeBoundaryWithIdentifier(brickIdentifier)
             bricks[brickIdentifier] = nil
+            return true
         }
+        return false
     }
     
     func addBrick(brick:UIView) {
@@ -63,7 +71,7 @@ class PongBehavior: UIDynamicBehavior {
         
     func setBallVelocity(ball: UIView) {
         let push = UIPushBehavior(items: [ball], mode:UIPushBehaviorMode.Instantaneous)
-        push.pushDirection = CGVector(dx: 0.0, dy: -1.0)
+        push.pushDirection = CGVector(dx: 0.0, dy: -1.5)
         dynamicAnimator?.addBehavior(push)
         push.addItem(ball)
         push.action = {
@@ -73,7 +81,7 @@ class PongBehavior: UIDynamicBehavior {
     
     func updatePaddle(paddle: UIView) {
         collision.removeBoundaryWithIdentifier(PathNames.Paddle)
-        collision.addBoundaryWithIdentifier(PathNames.Paddle, forPath: UIBezierPath(rect: paddle.frame))
+        collision.addBoundaryWithIdentifier(PathNames.Paddle, forPath: UIBezierPath(ovalInRect: paddle.frame))
     }
     
     func setWall(wall: UIBezierPath) {

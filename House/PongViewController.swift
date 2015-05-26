@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PongViewController: UIViewController {
+class PongViewController: UIViewController, GameWatcherDelegate {
 
     
     @IBOutlet weak var pongView: PongUIView!
@@ -36,6 +36,7 @@ class PongViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        pongView.gameWatcherDelegate = self
         pongView.finishSetup()
         pongView.initGame()
     }
@@ -47,10 +48,50 @@ class PongViewController: UIViewController {
     @IBAction func movePaddle(sender: UIPanGestureRecognizer) {
         switch (sender.state) {
         case .Began, .Changed:
-        paddleCenter = sender.locationInView(pongView).x
+            paddleCenter = sender.locationInView(pongView).x
         default:
             break
         }
     }
     
+
+    func playAgainActionHandler(action: UIAlertAction!) {
+        pongView.initGame()
+        pongView.resetBall()
+    }
+
+    
+    
+    func gameDidWin() {
+        var alert = UIAlertController(
+            title: "You win!",
+            message: "You cleared all the blocks",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        
+        let playAgainAction = UIAlertAction(title: "Play again",
+            style: UIAlertActionStyle.Default,
+            handler: playAgainActionHandler)
+
+        alert.addAction(playAgainAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func gameDidFinish() {
+        var alert = UIAlertController(
+            title: "Try again!",
+            message: "Sorry - you lost",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        let playAgainAction = UIAlertAction(title: "Play again",
+            style: UIAlertActionStyle.Default,
+            handler: playAgainActionHandler)
+        
+        alert.addAction(playAgainAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func blockDidGetHit() {
+        
+    }
 }
